@@ -1,0 +1,127 @@
+final inline int int1 = 1;
+
+final bool bool1 = true;
+
+inline float float1 = 2.0;
+
+final float float2 = float1 * (5.0 + 1.0) / 7.0;
+
+bool bool2 = true && false;
+
+bool bool3;
+float float3;
+
+// char char1 = 'a';
+
+typedef
+{
+    int intProp;
+    bool boolProp;
+    float floatProp;
+}
+MyType;
+
+// MyType myType1 = {1, true, 1.0, 'a'};
+
+// final MyType myType2 = {int1, bool1, float1, char1};
+
+bool Hello(bool a, bool b)
+{
+    bool a2 = a;
+    bool b2 = b;
+
+    return a2 && b2;
+}
+
+int Hello2(int a, int b)
+{
+    int a2 = a;
+    int b2 = b;
+
+    return a2 + b2;
+}
+
+extern void _print(int length, int value);
+
+global _start;
+int _start(/*int argc, char argv*/)
+{
+    extern int mod(int a, int b);
+
+    final inline int int1 = 2;
+    int int2 = 2 + 64;
+    int int3 = 2;
+    MyType myType3 = {int1, bool1, float1};
+    int noInitInt;
+
+    // This should be optimized
+    if (true)
+    {
+        _print(4, 70);  // 70 -> F
+    }
+    else
+    {
+        _print(4, 71);  // 71 -> G
+    }
+
+    inline int optimizedInt1 = 2;
+    inline int optimizedInt2 = 3;
+
+    if (optimizedInt1 == optimizedInt2)
+    {
+        _print(4, 71);  // 71 -> G
+    }
+    else
+    {
+        _print(4, 70);  // 70 -> F
+    }
+
+    if (int3 == int2)
+    {
+        _print(4, 66);
+    }
+    elif (int3 < int2) { _print(4, 67); }
+    else
+    {
+        _print(4, 68);
+    }
+
+    int whileInt = 10;
+
+    while (whileInt > 0)
+    {
+        whileInt -= 1;
+    }
+
+    float forFloat = 3.0;
+
+    for (int i = 0; i < 10; i += 2;)
+    {
+        forFloat += 1.0;
+    }
+
+    float float2 = myType3.floatProp;
+
+    // trying calls
+
+    int2 = mod(int2, 1000);
+
+    _print(4, int2);
+
+    _print(4, Hello2(int1, int2));
+
+    int int4_1 = 3;
+    int int4_2 = 2;
+    int int4_3 = 2;
+
+    // testing complex expressions
+
+    int int4 = int4_1 * 5 + (int4_2 * 2 - 4) - 1 * (int4_3 + 1) * int4_2 / 2;  // 12
+    int4 += 53;                                                                // 65 -> A
+    _print(4, int4);
+
+    // testing modulo
+
+    int int5 = 150;
+    _print(4, int5 % 80);  // 70 -> F
+}

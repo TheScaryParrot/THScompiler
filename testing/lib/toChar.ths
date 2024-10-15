@@ -1,0 +1,2 @@
+global intToChar;
+int intToChar(int a) { return a + 48; }

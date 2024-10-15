@@ -1,0 +1,28 @@
+bool isPrime(int n)
+{
+    extern int mod(int a, int b);
+    for (int i = 2; i < n; i += 1;)
+    {
+        if (mod(n, i) == 0)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+global _start;
+int _start()
+{
+    extern void _print(int length, int value);
+    extern int intToChar(int a);
+
+    for (int i = 2; i < 10; i += 1;)
+    {
+        if (isPrime(i))
+        {
+            _print(4, intToChar(i));
+        }
+    }
+}

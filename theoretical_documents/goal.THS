@@ -1,0 +1,47 @@
+final inline int int1 = 1;
+
+final bool bool1 = true;
+
+inline float float1 = 1.0;
+
+char char1 = 'a';
+
+typedef
+{
+    int intProp;
+    bool boolProp;
+    float floatProp;
+    char charProp;
+}
+MyType;
+
+MyType myType1 = {1, true, 1.0, 'a'};
+
+final MyType myType2 = {int1, bool1, float1, char1};
+
+int main(int argc, char argv)
+{
+    final inline int int1 = 2;
+    MyType myType3 = {int1, bool1, float1, char1};
+
+    if (myType1.intProp == myType2.intProp)
+    {
+        return 1;
+    }
+    else
+    {
+        myType1.intProp = myType3.intProp;
+    }
+
+    while (myType1.boolProp)
+    {
+        myType1.boolProp = false;
+    }
+
+    for (int i = 0; i < 10; i++;)
+    {
+        myType1.floatProp += 1.0;
+    }
+
+    char char2 = myType3.charProp;
+}

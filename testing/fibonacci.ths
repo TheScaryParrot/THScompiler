@@ -1,0 +1,17 @@
+global _start;
+int _start()
+{
+    extern void _print(int length, int value);
+    extern int intToChar(int a);
+
+    int a = 0;
+    int b = 1;
+
+    while (a < 10)
+    {
+        _print(4, intToChar(a));
+        int c = a + b;
+        a = b;
+        b = c;
+    }
+}
